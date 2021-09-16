@@ -1,125 +1,100 @@
 import React, { Component } from 'react'
 import NewsItem from './NewsItem'
+import Spinner from './Spinner'
+import PropTypes from 'prop-types'
+
 
 export class News extends Component {
 
-    articles = [
-        {
-            "source": {
-                "id": "espn-cric-info",
-                "name": "ESPN Cric Info"
-            },
-            "author": null,
-            "title": "PCB hands Umar Akmal three-year ban from all cricket | ESPNcricinfo.com",
-            "description": "Penalty after the batsman pleaded guilty to not reporting corrupt approaches | ESPNcricinfo.com",
-            "url": "http://www.espncricinfo.com/story/_/id/29103103/pcb-hands-umar-akmal-three-year-ban-all-cricket",
-            "urlToImage": "https://a4.espncdn.com/combiner/i?img=%2Fi%2Fcricket%2Fcricinfo%2F1099495_800x450.jpg",
-            "publishedAt": "2020-04-27T11:41:47Z",
-            "content": "Umar Akmal's troubled cricket career has hit its biggest roadblock yet, with the PCB handing him a ban from all representative cricket for three years after he pleaded guilty of failing to report det… [+1506 chars]"
-        },
-        {
-            "source": {
-                "id": "espn-cric-info",
-                "name": "ESPN Cric Info"
-            },
-            "author": null,
-            "title": "What we learned from watching the 1992 World Cup final in full again | ESPNcricinfo.com",
-            "description": "Wides, lbw calls, swing - plenty of things were different in white-ball cricket back then | ESPNcricinfo.com",
-            "url": "http://www.espncricinfo.com/story/_/id/28970907/learned-watching-1992-world-cup-final-full-again",
-            "urlToImage": "https://a4.espncdn.com/combiner/i?img=%2Fi%2Fcricket%2Fcricinfo%2F1219926_1296x729.jpg",
-            "publishedAt": "2020-03-30T15:26:05Z",
-            "content": "Last week, we at ESPNcricinfo did something we have been thinking of doing for eight years now: pretend-live ball-by-ball commentary for a classic cricket match. We knew the result, yes, but we tried… [+6823 chars]"
-        },
-        {
-            "source": {
-                "id": "al-jazeera-english",
-                "name": "Al Jazeera English"
-            },
-            "author": "Al Jazeera",
-            "title": "Afghanistan women’s football team flees to Pakistan",
-            "description": "Girls who played for under-14, under-16 and under-18 teams arrive in Lahore in the wake of Taliban’s takeover.",
-            "url": "http://www.aljazeera.com/news/2021/9/15/afghanistan-women-football-team-pakistan-taliban-sports",
-            "urlToImage": "https://www.aljazeera.com/wp-content/uploads/2021/09/000_9MV8AU.jpg?resize=1200%2C630",
-            "publishedAt": "2021-09-15T11:13:49Z",
-            "content": "Members of Afghanistans national womens football team have fled across the border into Pakistan, a month after the Taliban swept back into power, officials say. According to Pakistans Information Mi… [+3229 chars]"
-        },
-        {
-            "source": {
-                "id": "four-four-two",
-                "name": "FourFourTwo"
-            },
-            "author": "PA Staff",
-            "title": "Football rumours: English clubs lining up for Bukayo Saka",
-            "description": "The Sun reports Arsenal forward Bukayo Saka is in hot demand. The paper, via the Here We Go podcast, says multiple Premier League clubs have made enquiries about the 20-year-old’s situation, but the Gunners have no plans to let him go.",
-            "url": "https://www.fourfourtwo.com/news/football-rumours-english-clubs-lining-up-for-bukayo-saka-1631686047000",
-            "urlToImage": "https://cdn.mos.cms.futurecdn.net/DsVfiq9AGsgpGWUmbsjDvk-1200-80.jpg",
-            "publishedAt": "2021-09-15T06:07:27Z",
-            "content": "What the papers say The Sun reports Arsenal forward Bukayo Saka is in hot demand. The paper, via the Here We Go podcast, says multiple Premier League clubs have made enquiries about the 20-year-olds… [+1364 chars]"
-        },
-        {
-            "source": {
-                "id": "bbc-sport",
-                "name": "BBC Sport"
-            },
-            "author": "BBC Sport",
-            "title": "The Champions League team from a disputed 'smugglers' haven'",
-            "description": "Sheriff Tiraspol are the 'kings' of Moldovan football, but their power and backing comes from a disputed territory on the Ukraine border.",
-            "url": "http://www.bbc.co.uk/sport/football/58546814",
-            "urlToImage": "https://ichef.bbci.co.uk/live-experience/cps/624/cpsprodpb/45D9/production/_107018871_trans_index_getty.png",
-            "publishedAt": "2021-09-15T05:37:26.8808515Z",
-            "content": "This is an updated version of an article originally published in May 2019. Ask not what Trans-Dniester can do for you - ask what you can do for Trans-Dniester. We're driving down Andriy Smolensky… [+11625 chars]"
-        },
-        {
-            "source": {
-                "id": "fox-sports",
-                "name": "Fox Sports"
-            },
-            "author": null,
-            "title": "College Football Charlotte Solves A Mystery Charlotte Solves A Mystery Who placed the rubber duck on Ohio State's field after the Buckeyes' loss to Oregon on Saturday? Charlotte Wilder found out. 6 mins ago",
-            "description": "Who placed the rubber duck on Ohio State's field after the Buckeyes' loss to Oregon on Saturday? Charlotte Wilder found out.",
-            "url": "http://www.foxsports.com/stories/college-football/college-football-duck-troll-oregon-ducks-ohio-state-buckeyes-charlotte-wilder-dos-equis",
-            "urlToImage": "https://a57.foxsports.com/statics.foxsports.com/www.foxsports.com/content/uploads/2021/09/1408/814/552_Editorial_1920x1080_StoryCard_CFB_CharlottesDuck.jpg?ve=1&tl=1",
-            "publishedAt": "2021-09-14T23:07:44.773501Z",
-            "content": "The biggest win of the college football season thus far might very well be Oregon's 35-28 triumph over Ohio State on Saturday in Columbus. It marked a statement win for the Pac-12 conference while a… [+1887 chars]"
-        },
-        {
-            "source": {
-                "id": "bleacher-report",
-                "name": "Bleacher Report"
-            },
-            "author": null,
-            "title": "Week 1 Fantasy Punishment ",
-            "description": "Amanda had to eat an entire meal with footballs taped to her hands after taking an L. Watch 'Punishment League' ",
-            "url": "http://bleacherreport.com/post/hero-2/a2f266bf-4731-43fd-85dd-069ba4eee85a",
-            "urlToImage": "https://img.bleacherreport.net/cms/media/image/e8/c4/f1/a2/6da4/443a/a165/cb8d1b0b68b0/crop_exact_Week1_Punishment_Thumbnail.jpg?h=620&q=90&w=1103",
-            "publishedAt": "2021-09-14T21:37:24.6208361Z",
-            "content": "Amanda had to eat an entire meal with footballs taped to her hands after taking an L. Watch 'Punishment League'"
-        }
+    static defaultProps = {
+        country: "in",
+        pageSize: "8",
+        category: "general"
+    }
 
-    ]
+    static propeTypes = {
+        country: PropTypes.string,
+        pageSize: PropTypes.number,
+        category: PropTypes.string,
+    }
+
 
     constructor() {
         super()
 
         this.state = {
-            articles: this.articles,
-            loading: false
+            articles: [],
+            loading: false,
+            page: 1,
         }
+    }
+
+    async componentDidMount() {
+        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=63b7458784284a62afde12425ee295a5&pageSize=${this.props.pageSize}`
+
+        this.setState({ loading: true })
+
+        let data = await fetch(url)
+        let parseData = await data.json()
+        this.setState({ articles: parseData.articles, totalResults: parseData.totalResults, loading: false })
+    }
+
+    handlePreviousClick = async () => {
+        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=63b7458784284a62afde12425ee295a5&page=${this.state.page - 1}&pageSize=${this.props.pageSize}`
+
+        this.setState({ loading: true })
+
+        let data = await fetch(url)
+        let parseData = await data.json()
+        this.setState({
+            page: this.state.page - 1,
+            articles: parseData.articles,
+            loading: false
+        })
+    }
+
+    handleNextClick = async () => {
+
+        if (!(this.state.page + 1 > Math.ceil(this.state.totalResults / this.props.pageSize))) {
+
+            let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=63b7458784284a62afde12425ee295a5&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`
+
+            this.setState({ loading: true })
+
+            let data = await fetch(url)
+            let parseData = await data.json()
+
+            this.setState({
+                page: this.state.page + 1,
+                articles: parseData.articles,
+                loading: false
+            })
+        }
+
+
     }
 
     render() {
         return (
             <div className="container my-3">
 
-                <h2>NewsAgent - Tops Headlines</h2>
+                <h1 style={{ margin: "40px 0" }} className="text-center">NewsAgent - Tops Headlines</h1>
+
+                {this.state.loading && <Spinner />}
 
                 <div className="row">
-                    {this.state.articles.map((element) => {
-                        return <div key={element.url} className="col md-4">
-                            <NewsItem title={element.title} description={element.description} imgUrl={element.urlToImage} newsUrl={element.url} />
+                    {!this.state.loading && this.state.articles.map((element) => {
+                        return <div key={element.url} className="col-md-4">
+                            <NewsItem title={element.title ? element.title : ""} description={element.description ? element.description : ""} imgUrl={element.urlToImage} newsUrl={element.url} />
                         </div>
                     })}
                 </div>
+
+                <div className="container d-flex justify-content-between">
+                    <button disabled={this.state.page <= 1} type="button" className="btn btn-dark" onClick={this.handlePreviousClick} >&larr; Previous</button>
+                    <button disabled={this.state.page + 1 > Math.ceil(this.state.totalResults / this.props.pageSize)} type="button" className="btn btn-dark" onClick={this.handleNextClick}>Next &rarr;</button>
+                </div>
+
             </div>
         )
     }
