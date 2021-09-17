@@ -37,7 +37,7 @@ export class News extends Component {
 
     async updateNews() {
         this.props.setProgress(10)
-        const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=63b7458784284a62afde12425ee295a5&page=${this.state.page}&pageSize=${this.props.pageSize}`
+        const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`
         this.setState({ loading: true })
 
         let data = await fetch(url)
@@ -51,29 +51,12 @@ export class News extends Component {
     }
 
     async componentDidMount() {
-        // let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=63b7458784284a62afde12425ee295a5&page=1&pageSize=${this.props.pageSize}`
-
-        // this.setState({ loading: true })
-
-        // let data = await fetch(url)
-        // let parseData = await data.json()
-        // this.setState({ articles: parseData.articles, totalResults: parseData.totalResults, loading: false })
-        this.updateNews()
-    }
-
-    handlePreviousClick = async () => {
-        this.setState({ page: this.state.page-- })
-        this.updateNews()
-    }
-
-    handleNextClick = async () => {
-        this.setState({ page: this.state.page++ })
         this.updateNews()
     }
 
     fetchMoreData = async () => {
         this.setState({ page: this.state.page + 1 })
-        const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=63b7458784284a62afde12425ee295a5&page=${this.state.page}&pageSize=${this.props.pageSize}`
+        const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`
         let data = await fetch(url)
         let parseData = await data.json()
         this.setState({ articles: this.state.articles.concat(parseData.articles), totalResults: parseData.totalResults })
@@ -83,7 +66,7 @@ export class News extends Component {
         return (
             <>
 
-                <h1 style={{ margin: "40px 0" }} className="text-center">NewsAgent - Tops {this.capitalizeFirstLetter(this.props.category)} Headlines</h1>
+                <h1 style={{ margin: "40px 0", marginTop:"90px" }} className="text-center">NewsAgent - Tops {this.capitalizeFirstLetter(this.props.category)} Headlines</h1>
 
                 {this.state.loading && <Spinner />}
 

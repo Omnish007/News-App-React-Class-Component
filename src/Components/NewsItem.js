@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import newsImg from "../news.png"
 
 export class NewsItem extends Component {
 
 
     render() {
-        let { title, description, imgUrl, newsUrl, author, date, source } = this.props
+        let { title, description, imgUrl, newsUrl, author, date, source   } = this.props
 
         return (
             <div className="my-3">
@@ -14,7 +15,7 @@ export class NewsItem extends Component {
                             {source}</span>
                     </div>
 
-                    <img src={!imgUrl ? "https://images.indianexpress.com/2021/09/horo2121.jpg" : imgUrl} className="card-img-top" alt="..." />
+                    <img src={!imgUrl ? newsImg : imgUrl} className="card-img-top" alt="..." />
                     <div className="card-body">
 
                         <h5 className="card-title">{title}</h5>
